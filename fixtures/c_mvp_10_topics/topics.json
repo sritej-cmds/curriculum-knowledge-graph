@@ -1,0 +1,82 @@
+[
+  {
+    "topic_id": "C_001",
+    "name": "Variables",
+    "subject": "C Programming",
+    "unit": 1,
+    "description": "Named storage locations used to hold data values in a C program.",
+    "aliases": ["variable", "variables"]
+  },
+  {
+    "topic_id": "C_002",
+    "name": "Data Types",
+    "subject": "C Programming",
+    "unit": 1,
+    "description": "Types that define the kind of data a variable can store and how that data is represented.",
+    "aliases": ["data type", "types", "C data types"]
+  },
+  {
+    "topic_id": "C_003",
+    "name": "Operators",
+    "subject": "C Programming",
+    "unit": 1,
+    "description": "Symbols used to perform operations on values and expressions in C.",
+    "aliases": ["operator", "C operators"]
+  },
+  {
+    "topic_id": "C_004",
+    "name": "Conditional Statements",
+    "subject": "C Programming",
+    "unit": 2,
+    "description": "Statements used to make decisions and control program execution based on conditions.",
+    "aliases": ["conditionals", "if statements", "decision making"]
+  },
+  {
+    "topic_id": "C_005",
+    "name": "Loops",
+    "subject": "C Programming",
+    "unit": 2,
+    "description": "Control structures used to repeatedly execute a block of statements.",
+    "aliases": ["loop", "iteration", "iterative statements"]
+  },
+  {
+    "topic_id": "C_006",
+    "name": "Functions",
+    "subject": "C Programming",
+    "unit": 3,
+    "description": "Reusable blocks of code designed to perform a specific task.",
+    "aliases": ["function", "C functions"]
+  },
+  {
+    "topic_id": "C_007",
+    "name": "Arrays",
+    "subject": "C Programming",
+    "unit": 3,
+    "description": "Contiguous collections of elements of the same data type accessed using indices.",
+    "aliases": ["array", "C arrays"]
+  },
+  {
+    "topic_id": "C_008",
+    "name": "Strings",
+    "subject": "C Programming",
+    "unit": 3,
+    "description": "Sequences of characters represented as null-terminated character arrays in C.",
+    "aliases": ["string", "C strings", "character strings"]
+  },
+  {
+    "topic_id": "C_009",
+    "name": "Pointers",
+    "subject": "C Programming",
+    "unit": 4,
+    "description": "Variables that store memory addresses of another variable.",
+    "aliases": ["pointer", "C pointers", "memory addresses"]
+  },
+  {
+    "topic_id": "C_010",
+    "name": "Structures",
+    "subject": "C Programming",
+    "unit": 4,
+    "description": "User-defined data types that group related variables of potentially different data types.",
+    "aliases": ["structure", "struct", "C structures"]
+  }
+]

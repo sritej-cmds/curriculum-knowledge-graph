@@ -1,0 +1,74 @@
+[
+  {
+    "source": "C_002",
+    "target": "C_001",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.95,
+    "reason": "A student needs to understand data types to determine what kind of value a variable can store.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "C_002",
+    "target": "C_003",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.90,
+    "reason": "Operators operate on values whose types determine how the operations behave.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "C_003",
+    "target": "C_004",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.91,
+    "reason": "Conditional expressions rely on operators used to compare or combine values.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "C_003",
+    "target": "C_005",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.90,
+    "reason": "Loop conditions and loop control commonly rely on expressions and operators.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "C_001",
+    "target": "C_006",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.88,
+    "reason": "Functions use variables and parameters to receive, store, and manipulate values.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "C_002",
+    "target": "C_007",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.94,
+    "reason": "Arrays contain elements of a specified data type.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "C_007",
+    "target": "C_008",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.86,
+    "reason": "C strings are represented using character arrays.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "C_001",
+    "target": "C_009",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.92,
+    "reason": "Pointers are variables that store memory addresses.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "C_002",
+    "target": "C_010",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.93,
+    "reason": "Structure members have declared data types.",
+    "validation_status": "PENDING"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "source": "C_002",
+    "target": "C_001",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.92,
+    "reason": "In C, variable declaration explicitly requires specifying a data type to allocate and interpret memory; a student cannot define or understand variables without understanding data types.",
+    "validation_status": "ACCEPTED"
+  },
+  {
+    "source": "C_001",
+    "target": "C_009",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.95,
+    "reason": "Pointers hold the memory addresses of variables; understanding variables and how values are stored in memory is strictly necessary before learning address-of operations and pointer dereferencing.",
+    "validation_status": "ACCEPTED"
+  },
+  {
+    "source": "C_003",
+    "target": "C_004",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.9,
+    "reason": "Conditional statements rely on evaluating expressions using relational and logical operators to make branching decisions during execution.",
+    "validation_status": "ACCEPTED"
+  },
+  {
+    "source": "C_007",
+    "target": "C_008",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.98,
+    "reason": "C lacks a native primitive string type and implements strings as null-terminated character arrays; understanding array indexing, memory contiguous layout, and sizing is strictly necessary to comprehend C strings.",
+    "validation_status": "ACCEPTED"
+  },
+  {
+    "source": "C_002",
+    "target": "C_010",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.88,
+    "reason": "Structures are user-defined composite data types; understanding what built-in data types represent is conceptually required before creating custom grouped data types.",
+    "validation_status": "ACCEPTED"
+  }
+]

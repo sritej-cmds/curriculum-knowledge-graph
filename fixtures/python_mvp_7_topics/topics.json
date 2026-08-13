@@ -1,0 +1,95 @@
+{
+  "course": {
+    "course_code": "UE25CS151A",
+    "course_name": "Python for Computational Problem Solving"
+  },
+  "topics": [
+    {
+      "topic_id": "PY_001",
+      "name": "Python Programming Fundamentals",
+      "unit": 1,
+      "description": "Foundational introduction to Python programming, including the Python programming language, basic program structure, and execution.",
+      "aliases": [
+        "Python Programming"
+      ],
+      "source_sessions": [
+        10,
+        11
+      ]
+    },
+    {
+      "topic_id": "PY_002",
+      "name": "Variables",
+      "unit": 1,
+      "description": "The use of variables in Python to hold and work with values during program execution.",
+      "aliases": [],
+      "source_sessions": [
+        12,
+        13
+      ]
+    },
+    {
+      "topic_id": "PY_003",
+      "name": "Input",
+      "unit": 1,
+      "description": "Obtaining input from the user using Python's input functionality.",
+      "aliases": [
+        "Input Function"
+      ],
+      "source_sessions": [
+        14
+      ]
+    },
+    {
+      "topic_id": "PY_004",
+      "name": "Operators & Expressions",
+      "unit": 1,
+      "description": "Python operators and expressions used to perform computations and construct values from operands.",
+      "aliases": [
+        "Operators and Expressions"
+      ],
+      "source_sessions": [
+        15,
+        19
+      ]
+    },
+    {
+      "topic_id": "PY_005",
+      "name": "Operator Precedence & Associativity",
+      "unit": 1,
+      "description": "Rules that determine the order in which operators in Python expressions are evaluated.",
+      "aliases": [
+        "Precedence and Associativity"
+      ],
+      "source_sessions": [
+        19
+      ]
+    },
+    {
+      "topic_id": "PY_006",
+      "name": "Selection Statements",
+      "unit": 1,
+      "description": "Python control structures used to select which statements execute based on conditions.",
+      "aliases": [
+        "Selection",
+        "Conditional Statements"
+      ],
+      "source_sessions": [
+        20
+      ]
+    },
+    {
+      "topic_id": "PY_007",
+      "name": "Looping Statements",
+      "unit": 1,
+      "description": "Python control structures used to repeatedly execute statements according to iteration conditions.",
+      "aliases": [
+        "Loops",
+        "Looping"
+      ],
+      "source_sessions": [
+        21
+      ]
+    }
+  ]
+}

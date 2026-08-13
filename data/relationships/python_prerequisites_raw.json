@@ -1,0 +1,26 @@
+[
+  {
+    "source": "PY_004",
+    "target": "PY_005",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.95,
+    "reason": "Understanding operators and expressions is necessary to understand operator precedence and associativity, which govern the order of evaluation within expressions.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "PY_004",
+    "target": "PY_006",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.90,
+    "reason": "Selection statements rely on evaluating conditional expressions using operators to determine execution branching logic.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "PY_004",
+    "target": "PY_007",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.88,
+    "reason": "Looping statements require condition expressions constructed with operators to govern iteration continuation and termination.",
+    "validation_status": "PENDING"
+  }
+]

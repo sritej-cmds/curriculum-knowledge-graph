@@ -3,20 +3,24 @@ from pathlib import Path
 from src.llm.client import GeminiClient
 
 PROMPT_PATH = Path("prompts/prerequisite_mapping.txt")
-TOPICS_PATH = Path("fixtures/c_mvp_10_topics/topics.json")
+TOPICS_PATH = Path(
+    "fixtures/python_mvp_7_topics/topics.json"
+)
 RAW_RELATIONSHIPS_PATH = Path(
-    "data/relationships/c_prerequisites_raw.json"
+    "data/relationships/python_prerequisites_raw.json"
 )
 VALIDATED_RELATIONSHIPS_PATH = Path(
-    "data/relationships/c_prerequisites_validated.json"
+    "data/relationships/python_prerequisites_validated.json"
 )
 MIN_CONFIDENCE = 0.70
 
 def load_topics():
-    """Load topic definitions from the golden fixture."""
-    with open(TOPICS_PATH, "r", encoding="utf-8") as file:
-        return json.load(file)
+    """Load topic definitions from the Python curriculum fixture."""
 
+    with open(TOPICS_PATH, "r", encoding="utf-8") as file:
+        data = json.load(file)
+
+    return data["topics"]
 
 def load_prompt():
     """Load the prerequisite mapping prompt."""
@@ -336,6 +340,12 @@ if __name__ == "__main__":
     # Generate candidate relationships
     llm = GeminiClient()
     response = llm.generate(prompt)
+    with open(
+    RAW_RELATIONSHIPS_PATH,
+    "w",
+    encoding="utf-8"
+    ) as file:
+        file.write(response)
 
     # Parse LLM response
     relationships = parse_llm_response(response)

@@ -16,8 +16,8 @@ NEO4J_URI = os.environ["NEO4J_URI"]
 NEO4J_USER = os.environ["NEO4J_USER"]
 NEO4J_PASSWORD = os.environ["NEO4J_PASSWORD"]
 
-TOPICS_PATH = "data/curriculum/c_topics.json"
-EDGES_PATH = "data/relationships/c_prerequisites_validated.json"
+TOPICS_PATH = "fixtures/python_mvp_7_topics/topics.json"
+EDGES_PATH = "data/relationships/python_prerequisites_validated.json"
 
 
 def load_topics(tx, topics):
@@ -60,17 +60,32 @@ def load_edges(tx, edges):
 
 def main():
     with open(TOPICS_PATH) as f:
-        topics = json.load(f)
+        topics_data = json.load(f)
+
+    topics = topics_data["topics"]
+    subject = topics_data["course"]["course_name"]
+
+    for topic in topics:
+        topic["subject"] = subject
+
     with open(EDGES_PATH) as f:
         edges = json.load(f)
 
-    driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
+    driver = GraphDatabase.driver(
+        NEO4J_URI,
+        auth=(NEO4J_USER, NEO4J_PASSWORD)
+    )
+
     with driver.session() as session:
         session.execute_write(load_topics, topics)
         session.execute_write(load_edges, edges)
+
     driver.close()
 
-    print(f"Loaded {len(topics)} topics and {len(edges)} prerequisite edges.")
+    print(
+        f"Loaded {len(topics)} topics and "
+        f"{len(edges)} prerequisite edges."
+    )
 
 
 if __name__ == "__main__":

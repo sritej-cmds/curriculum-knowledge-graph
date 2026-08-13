@@ -1,0 +1,12 @@
+[
+  {"topic_id": "C_001", "name": "Variables", "subject": "C Programming", "unit": 1, "description": "Named storage locations for data."},
+  {"topic_id": "C_002", "name": "Data Types", "subject": "C Programming", "unit": 1, "description": "Classifications like int, float, char that define data size and behavior."},
+  {"topic_id": "C_003", "name": "Operators", "subject": "C Programming", "unit": 1, "description": "Symbols that perform operations on variables and values."},
+  {"topic_id": "C_004", "name": "Conditional Statements", "subject": "C Programming", "unit": 2, "description": "if / else / switch constructs for branching logic."},
+  {"topic_id": "C_005", "name": "Loops", "subject": "C Programming", "unit": 2, "description": "for / while / do-while constructs for repetition."},
+  {"topic_id": "C_006", "name": "Functions", "subject": "C Programming", "unit": 2, "description": "Reusable named blocks of code that take inputs and return outputs."},
+  {"topic_id": "C_007", "name": "Arrays", "subject": "C Programming", "unit": 3, "description": "Contiguous fixed-size collections of same-typed elements."},
+  {"topic_id": "C_008", "name": "Strings", "subject": "C Programming", "unit": 3, "description": "Character arrays terminated by a null character."},
+  {"topic_id": "C_009", "name": "Pointers", "subject": "C Programming", "unit": 4, "description": "Variables that store memory addresses of another variable."},
+  {"topic_id": "C_010", "name": "Structures", "subject": "C Programming", "unit": 4, "description": "User-defined types that group multiple variables under one name."}
+]

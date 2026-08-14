@@ -90,6 +90,278 @@
       "source_sessions": [
         21
       ]
+    },
+    {
+      "topic_id": "PY_008",
+      "name": "Lists",
+      "unit": 2,
+      "description": "Python list data structures and their fundamental operations for storing and manipulating ordered collections of values.",
+      "aliases": [
+        "List",
+        "Python Lists"
+      ],
+      "source_sessions": [
+        28,
+        29
+      ]
+    },
+    {
+      "topic_id": "PY_009",
+      "name": "Tuples",
+      "unit": 2,
+      "description": "Python tuple data structures and their operations for representing ordered collections of values.",
+      "aliases": [
+        "Tuple",
+        "Python Tuples"
+      ],
+      "source_sessions": [
+        29
+      ]
+    },
+    {
+      "topic_id": "PY_010",
+      "name": "Dictionaries",
+      "unit": 2,
+      "description": "Python dictionary data structures and their operations for storing and accessing key-value pairs.",
+      "aliases": [
+        "Dictionary",
+        "Python Dictionaries"
+      ],
+      "source_sessions": [
+        32,
+        33
+      ]
+    },
+    {
+      "topic_id": "PY_011",
+      "name": "Sets",
+      "unit": 2,
+      "description": "Python set data structures and their operations for representing collections of unique values.",
+      "aliases": [
+        "Set",
+        "Python Sets"
+      ],
+      "source_sessions": [
+        37,
+        38,
+        39
+      ]
+    },
+    {
+      "topic_id": "PY_012",
+      "name": "Strings",
+      "unit": 2,
+      "description": "Python strings, their types, and operations for representing and manipulating textual data.",
+      "aliases": [
+        "String",
+        "Python Strings"
+      ],
+      "source_sessions": [
+        40,
+        41,
+        42
+      ]
+    },
+    {
+      "topic_id": "PY_013",
+      "name": "File Operations",
+      "unit": 2,
+      "description": "Working with files in Python, including file handling and operations on stored data.",
+      "aliases": [
+        "File Handling",
+        "File Operations"
+      ],
+      "source_sessions": [
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    {
+      "topic_id": "PY_014",
+      "name": "Functions",
+      "unit": 2,
+      "description": "Defining and calling reusable functions in Python to organize and execute computational tasks.",
+      "aliases": [
+        "Function Definition",
+        "Function Calls",
+        "Python Functions"
+      ],
+      "source_sessions": [
+        51
+      ]
+    },
+    {
+      "topic_id": "PY_015",
+      "name": "Function Parameters",
+      "unit": 2,
+      "description": "Using positional and keyword parameters when defining and calling Python functions.",
+      "aliases": [
+        "Positional Parameters",
+        "Keyword Parameters",
+        "Function Arguments"
+      ],
+      "source_sessions": [
+        55
+      ]
+    },
+    {
+      "topic_id": "PY_016",
+      "name": "Variable-Length Arguments",
+      "unit": 2,
+      "description": "Using variable-length positional arguments and key-value arguments when defining Python functions.",
+      "aliases": [
+        "Variable Number of Arguments",
+        "Variable-Length Arguments",
+        "Key-Value Arguments"
+      ],
+      "source_sessions": [
+        56,
+        57
+      ]
+    },
+    {
+      "topic_id": "PY_017",
+      "name": "Recursion",
+      "unit": 3,
+      "description": "A programming technique in which a function calls itself to solve a problem through smaller instances of the same problem.",
+      "aliases": [
+        "Recursive Functions",
+        "Recursive Programming"
+      ],
+      "source_sessions": [
+        64,
+        65
+      ]
+    },
+    {
+      "topic_id": "PY_018",
+      "name": "Callbacks",
+      "unit": 3,
+      "description": "Using functions as callbacks so that one function can receive and invoke another function as part of its execution.",
+      "aliases": [
+        "Callback Functions",
+        "Callback Programming"
+      ],
+      "source_sessions": [
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "topic_id": "PY_019",
+      "name": "Generators",
+      "unit": 3,
+      "description": "Python generators for producing values iteratively rather than computing and storing all values at once.",
+      "aliases": [
+        "Generator Functions",
+        "Python Generators"
+      ],
+      "source_sessions": [
+        69
+      ]
+    },
+    {
+      "topic_id": "PY_020",
+      "name": "Closures",
+      "unit": 3,
+      "description": "Functions that retain access to variables from their enclosing scope after that enclosing context has completed.",
+      "aliases": [
+        "Python Closures"
+      ],
+      "source_sessions": [
+        73,
+        74
+      ]
+    },
+    {
+      "topic_id": "PY_021",
+      "name": "Decorators",
+      "unit": 3,
+      "description": "Python constructs used to modify or extend the behavior of functions or other callable objects without directly changing their implementation.",
+      "aliases": [
+        "Python Decorators",
+        "Function Decorators"
+      ],
+      "source_sessions": [
+        75,
+        76
+      ]
+    },
+    {
+      "topic_id": "PY_022",
+      "name": "Lambda Functions",
+      "unit": 4,
+      "description": "Anonymous functions defined using Python's lambda expression syntax for concise functional operations.",
+      "aliases": [
+        "Lambda",
+        "Anonymous Functions",
+        "Lambda Expressions"
+      ],
+      "source_sessions": [
+        91,
+        92
+      ]
+    },
+    {
+      "topic_id": "PY_023",
+      "name": "Map, Filter & Reduce",
+      "unit": 4,
+      "description": "Functional programming operations in Python for transforming, selecting, and aggregating elements of iterable data.",
+      "aliases": [
+        "Map",
+        "Filter",
+        "Reduce",
+        "Map Filter Reduce"
+      ],
+      "source_sessions": [
+        93,
+        94
+      ]
+    },
+    {
+      "topic_id": "PY_024",
+      "name": "Classes & Objects",
+      "unit": 4,
+      "description": "Defining classes and creating objects in Python to represent data and behavior using object-oriented programming.",
+      "aliases": [
+        "Classes",
+        "Objects",
+        "Object-Oriented Programming"
+      ],
+      "source_sessions": [
+        100
+      ]
+    },
+    {
+      "topic_id": "PY_025",
+      "name": "Inheritance & Polymorphism",
+      "unit": 4,
+      "description": "Object-oriented programming concepts for deriving classes from existing classes and allowing related objects to be used through common interfaces.",
+      "aliases": [
+        "Inheritance",
+        "Polymorphism"
+      ],
+      "source_sessions": [
+        101,
+        102
+      ]
+    },
+    {
+      "topic_id": "PY_026",
+      "name": "Iterators",
+      "unit": 4,
+      "description": "Python iteration mechanisms that provide sequential access to elements of an iterable.",
+      "aliases": [
+        "Python Iterators",
+        "Iterator Protocol"
+      ],
+      "source_sessions": [
+        103,
+        104
+      ]
     }
   ]
 }

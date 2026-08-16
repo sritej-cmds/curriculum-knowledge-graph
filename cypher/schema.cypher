@@ -9,3 +9,9 @@ FOR (s:Subject) REQUIRE s.name IS UNIQUE;
 
 CREATE CONSTRAINT student_id_unique IF NOT EXISTS
 FOR (st:Student) REQUIRE st.id IS UNIQUE;
+
+CREATE CONSTRAINT course_code_unique IF NOT EXISTS
+FOR (c:Course) REQUIRE c.course_code IS UNIQUE;
+
+CREATE CONSTRAINT semester_number_unique IF NOT EXISTS
+FOR (s:Semester) REQUIRE s.number IS UNIQUE;

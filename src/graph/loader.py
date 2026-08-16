@@ -17,25 +17,33 @@ NEO4J_USER = os.environ["NEO4J_USER"]
 NEO4J_PASSWORD = os.environ["NEO4J_PASSWORD"]
 
 TOPICS_PATH = "fixtures/python_mvp_7_topics/topics.json"
+COURSES_PATH = "data/curriculum/courses.json"
 EDGES_PATH = "data/relationships/python_prerequisites_validated.json"
 
-
-def load_topics(tx, topics):
+def load_topics(tx, topics, course):
     for t in topics:
         tx.run(
             """
+            MERGE (semester:Semester {number: $semester})
+            MERGE (course_node:Course {course_code: $course_code})
+            SET course_node.name = $course_name
+
+            MERGE (semester)-[:HAS_COURSE]->(course_node)
+
             MERGE (topic:Topic {topic_id: $topic_id})
             SET topic.name = $name,
                 topic.unit = $unit,
                 topic.description = $description
-            MERGE (subject:Subject {name: $subject})
-            MERGE (subject)-[:CONTAINS]->(topic)
+
+            MERGE (course_node)-[:CONTAINS]->(topic)
             """,
+            semester=course["semester"],
+            course_code=course["course_code"],
+            course_name=course["course_name"],
             topic_id=t["topic_id"],
             name=t["name"],
             unit=t["unit"],
             description=t.get("description", ""),
-            subject=t["subject"],
         )
 
 
@@ -62,11 +70,11 @@ def main():
     with open(TOPICS_PATH) as f:
         topics_data = json.load(f)
 
-    topics = topics_data["topics"]
-    subject = topics_data["course"]["course_name"]
+    with open(COURSES_PATH) as f:
+        courses_data = json.load(f)
 
-    for topic in topics:
-        topic["subject"] = subject
+    topics = topics_data["topics"]
+    course = courses_data["courses"][0]
 
     with open(EDGES_PATH) as f:
         edges = json.load(f)
@@ -77,7 +85,7 @@ def main():
     )
 
     with driver.session() as session:
-        session.execute_write(load_topics, topics)
+        session.execute_write(load_topics, topics, course)
         session.execute_write(load_edges, edges)
 
     driver.close()

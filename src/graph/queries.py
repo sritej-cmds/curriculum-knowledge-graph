@@ -260,3 +260,261 @@ def create_course_prerequisite(
 
     record = result.single()
     return record.data() if record else None
+
+# ---------------------------------------------------------------------------
+# Curriculum browsing / read queries
+# ---------------------------------------------------------------------------
+
+def list_semesters(session):
+    """Return every semester with its courses."""
+    result = session.run(
+        """
+        MATCH (s:Semester)
+        OPTIONAL MATCH (s)-[:HAS_COURSE]->(c:Course)
+        RETURN s.number AS number,
+               collect(
+                   CASE
+                       WHEN c IS NOT NULL THEN {
+                           course_code: c.course_code,
+                           name: c.name
+                       }
+                   END
+               ) AS courses
+        ORDER BY s.number
+        """
+    )
+
+    return [
+        {
+            "number": record["number"],
+            "courses": [
+                course
+                for course in record["courses"]
+                if course is not None
+            ],
+        }
+        for record in result
+    ]
+
+
+def list_courses(session, semester=None):
+    """Return all courses, optionally filtered by semester."""
+    if semester is None:
+        result = session.run(
+            """
+            MATCH (c:Course)
+            OPTIONAL MATCH (s:Semester)-[:HAS_COURSE]->(c)
+            RETURN c.course_code AS course_code,
+                   c.name AS name,
+                   s.number AS semester
+            ORDER BY s.number, c.course_code
+            """
+        )
+    else:
+        result = session.run(
+            """
+            MATCH (s:Semester {number: $semester})-[:HAS_COURSE]->(c:Course)
+            RETURN c.course_code AS course_code,
+                   c.name AS name,
+                   s.number AS semester
+            ORDER BY c.course_code
+            """,
+            semester=semester,
+        )
+
+    return [record.data() for record in result]
+
+
+def get_course(session, course_code):
+    """Return course details including topics and course prerequisites."""
+    result = session.run(
+        """
+        MATCH (c:Course {course_code: $course_code})
+        OPTIONAL MATCH (s:Semester)-[:HAS_COURSE]->(c)
+        OPTIONAL MATCH (c)-[:CONTAINS]->(t:Topic)
+        OPTIONAL MATCH (prereq:Course)-[:PREREQUISITE_OF]->(c)
+
+        RETURN c.course_code AS course_code,
+               c.name AS name,
+               s.number AS semester,
+               collect(
+                   DISTINCT CASE
+                       WHEN t IS NOT NULL THEN {
+                           topic_id: t.topic_id,
+                           name: t.name,
+                           unit: t.unit
+                       }
+                   END
+               ) AS topics,
+               collect(DISTINCT prereq.course_code) AS prerequisite_courses
+        """,
+        course_code=course_code,
+    )
+
+    record = result.single()
+
+    if not record:
+        return None
+
+    return {
+        "course_code": record["course_code"],
+        "name": record["name"],
+        "semester": record["semester"],
+        "topics": [
+            topic
+            for topic in record["topics"]
+            if topic is not None
+        ],
+        "prerequisite_courses": record["prerequisite_courses"],
+    }
+
+
+def list_topics_for_course(session, course_code):
+    """Return all topics belonging to a course."""
+    result = session.run(
+        """
+        MATCH (c:Course {course_code: $course_code})
+              -[:CONTAINS]->(t:Topic)
+        RETURN t.topic_id AS topic_id,
+               t.name AS name,
+               t.unit AS unit,
+               t.description AS description,
+               c.course_code AS course_code
+        ORDER BY t.unit, t.topic_id
+        """,
+        course_code=course_code,
+    )
+
+    return [record.data() for record in result]
+
+
+def list_topics(session):
+    """Return every topic in the curriculum."""
+    result = session.run(
+        """
+        MATCH (c:Course)-[:CONTAINS]->(t:Topic)
+        OPTIONAL MATCH (s:Semester)-[:HAS_COURSE]->(c)
+        RETURN t.topic_id AS topic_id,
+               t.name AS name,
+               t.unit AS unit,
+               t.description AS description,
+               c.course_code AS course_code,
+               s.number AS semester
+        ORDER BY s.number, c.course_code, t.unit, t.topic_id
+        """
+    )
+
+    return [record.data() for record in result]
+
+
+def search_topics(session, query):
+    """Search topics by topic ID or name."""
+    result = session.run(
+        """
+        MATCH (c:Course)-[:CONTAINS]->(t:Topic)
+        WHERE toLower(t.topic_id) CONTAINS toLower($query)
+           OR toLower(t.name) CONTAINS toLower($query)
+        RETURN t.topic_id AS topic_id,
+               t.name AS name,
+               t.unit AS unit,
+               t.description AS description,
+               c.course_code AS course_code
+        ORDER BY t.topic_id
+        LIMIT 50
+        """,
+        query=query,
+    )
+
+    return [record.data() for record in result]
+
+
+def get_topic(session, topic_id):
+    """Return details for one topic."""
+    result = session.run(
+        """
+        MATCH (c:Course)-[:CONTAINS]->(t:Topic {topic_id: $topic_id})
+        RETURN t.topic_id AS topic_id,
+               t.name AS name,
+               t.unit AS unit,
+               t.description AS description,
+               c.course_code AS course_code
+        """,
+        topic_id=topic_id,
+    )
+
+    record = result.single()
+    return record.data() if record else None
+
+
+def overview_stats(session):
+    """Return high-level curriculum counts."""
+    result = session.run(
+        """
+        OPTIONAL MATCH (s:Semester)
+        WITH count(DISTINCT s) AS semesters
+
+        OPTIONAL MATCH (c:Course)
+        WITH semesters, count(DISTINCT c) AS courses
+
+        OPTIONAL MATCH (t:Topic)
+        WITH semesters, courses, count(DISTINCT t) AS topics
+
+        OPTIONAL MATCH ()-[r:PREREQUISITE_OF]->()
+        RETURN semesters,
+               courses,
+               topics,
+               count(r) AS relationships
+        """
+    )
+
+    record = result.single()
+
+    return {
+        "semesters": record["semesters"],
+        "courses": record["courses"],
+        "topics": record["topics"],
+        "relationships": record["relationships"],
+    }
+
+
+def full_topic_graph(session):
+    """Return the complete topic prerequisite graph."""
+    nodes_result = session.run(
+        """
+        MATCH (t:Topic)
+        RETURN t.topic_id AS id,
+               t.name AS name
+        ORDER BY t.topic_id
+        """
+    )
+
+    edges_result = session.run(
+        """
+        MATCH (a:Topic)-[:PREREQUISITE_OF]->(b:Topic)
+        RETURN a.topic_id AS source,
+               b.topic_id AS target
+        ORDER BY a.topic_id, b.topic_id
+        """
+    )
+
+    return {
+        "nodes": [record.data() for record in nodes_result],
+        "edges": [record.data() for record in edges_result],
+    }
+
+
+def course_prerequisites(session, course_code):
+    """Return courses that are prerequisites for the given course."""
+    result = session.run(
+        """
+        MATCH (prereq:Course)-[:PREREQUISITE_OF]->(
+            target:Course {course_code: $course_code}
+        )
+        RETURN prereq.course_code AS course_code,
+               prereq.name AS name
+        ORDER BY prereq.course_code
+        """,
+        course_code=course_code,
+    )
+
+    return [record.data() for record in result]

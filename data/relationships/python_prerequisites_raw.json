@@ -4,23 +4,79 @@
     "target": "PY_005",
     "relationship": "PREREQUISITE_OF",
     "confidence": 0.95,
-    "reason": "Understanding operators and expressions is necessary to understand operator precedence and associativity, which govern the order of evaluation within expressions.",
+    "reason": "Operator precedence and associativity define evaluation rules for operators within expressions, making operators and expressions a strict conceptual prerequisite.",
     "validation_status": "PENDING"
   },
   {
-    "source": "PY_004",
-    "target": "PY_006",
+    "source": "PY_014",
+    "target": "PY_015",
     "relationship": "PREREQUISITE_OF",
-    "confidence": 0.90,
-    "reason": "Selection statements rely on evaluating conditional expressions using operators to determine execution branching logic.",
+    "confidence": 0.95,
+    "reason": "Function parameters define input passing mechanisms for functions, requiring prior conceptual understanding of function definitions and calls.",
     "validation_status": "PENDING"
   },
   {
-    "source": "PY_004",
-    "target": "PY_007",
+    "source": "PY_015",
+    "target": "PY_016",
     "relationship": "PREREQUISITE_OF",
-    "confidence": 0.88,
-    "reason": "Looping statements require condition expressions constructed with operators to govern iteration continuation and termination.",
+    "confidence": 0.9,
+    "reason": "Variable-length arguments are advanced parameter mechanisms that build directly upon standard positional and keyword function parameters.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "PY_014",
+    "target": "PY_017",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.95,
+    "reason": "Recursion is defined as a function calling itself, making the concept of functions strictly necessary for understanding recursion.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "PY_014",
+    "target": "PY_018",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.95,
+    "reason": "Callback mechanisms involve passing and executing functions as arguments, directly depending on the concept of functions.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "PY_014",
+    "target": "PY_019",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.95,
+    "reason": "Generators in Python are implemented as specialized generator functions, requiring understanding of standard functions.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "PY_014",
+    "target": "PY_020",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.95,
+    "reason": "Closures are nested functions that retain access to outer scope variables, strictly requiring prior understanding of functions.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "PY_014",
+    "target": "PY_021",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.9,
+    "reason": "Decorators are constructs that take functions as input to extend or modify their behavior, requiring understanding of functions.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "PY_014",
+    "target": "PY_022",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.95,
+    "reason": "Lambda functions are anonymous function declarations, requiring fundamental understanding of function concepts.",
+    "validation_status": "PENDING"
+  },
+  {
+    "source": "PY_024",
+    "target": "PY_025",
+    "relationship": "PREREQUISITE_OF",
+    "confidence": 0.95,
+    "reason": "Inheritance and polymorphism are object-oriented principles defined specifically over classes and object instances.",
     "validation_status": "PENDING"
   }
 ]

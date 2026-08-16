@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Lexend", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  --color-canvas: #F6F7F9;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #FBFBFC;
+  --color-border: #E3E6EB;
+  --color-border-strong: #D0D5DD;
+
+  --color-ink: #12141C;
+  --color-ink-soft: #5B6472;
+  --color-ink-faint: #8A93A3;
+
+  --color-accent: #4338CA;
+  --color-accent-hover: #362FA0;
+  --color-accent-soft: #EEF0FE;
+  --color-accent-ring: #C7CCF7;
+
+  --color-success: #12805C;
+  --color-success-soft: #E6F6EF;
+  --color-danger: #C4351F;
+  --color-danger-soft: #FDECEA;
+  --color-warning: #92610A;
+  --color-warning-soft: #FDF3E3;
+}
+
+html, body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.font-mono, code {
+  font-family: var(--font-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+/* Thin, quiet scrollbars — matches the restrained admin-tool feel */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-faint); }
+
+/* Focus visibility, kept everywhere per accessibility floor */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* --- Prerequisite "thread" motif ---
+   Signature visual language reused across the curriculum tree,
+   topic detail chain, and the knowledge graph nodes/edges. */
+.thread-line {
+  position: relative;
+}
+.thread-line::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-border-strong);
+}
+.thread-node {
+  width: 15px;
+  height: 15px;
+  border-radius: 999px;
+  background: var(--color-surface);
+  border: 2px solid var(--color-accent);
+  flex: none;
+  z-index: 1;
+}
+
+.xy-flow-scope .react-flow__attribution {
+  font-family: var(--font-body);
+  font-size: 10px;
+  background: transparent;
+}

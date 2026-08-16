@@ -10,6 +10,7 @@ from contextlib import asynccontextmanager
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from neo4j import GraphDatabase
+from pydantic import BaseModel
 
 from src.graph.queries import (
     immediate_prerequisites,
@@ -17,6 +18,12 @@ from src.graph.queries import (
     downstream_impact,
     foundational_centrality,
     student_remediation,
+)
+from src.graph.services import (
+    ValidationError,
+    create_topic,
+    add_topic_prerequisite,
+    add_course_prerequisite,
 )
 
 load_dotenv()
@@ -35,6 +42,21 @@ async def lifespan(app: FastAPI):
     yield
     driver.close()
 
+class CreateTopicRequest(BaseModel):
+    course_code: str
+    name: str
+    unit: int
+    description: str = ""
+
+
+class TopicPrerequisiteRequest(BaseModel):
+    prerequisite_topic_id: str
+    target_topic_id: str
+
+
+class CoursePrerequisiteRequest(BaseModel):
+    prerequisite_course_code: str
+    target_course_code: str
 
 app = FastAPI(title="Curriculum Knowledge Graph API", lifespan=lifespan)
 
@@ -77,7 +99,77 @@ def get_student_remediation(student_id: str):
         raise HTTPException(status_code=404, detail=f"No remediation data found for {student_id}")
     return {"student_id": student_id, "remediation": result}
 
+@app.post("/topics")
+def create_topic_endpoint(request: CreateTopicRequest):
+    try:
+        with driver.session() as session:
+            result = create_topic(
+                session,
+                request.course_code,
+                request.name,
+                request.unit,
+                request.description,
+            )
 
+        return {
+            "message": "Topic created successfully",
+            "topic": result,
+        }
+
+    except ValidationError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e),
+        )
+
+
+@app.post("/topic-prerequisites")
+def add_topic_prerequisite_endpoint(
+    request: TopicPrerequisiteRequest,
+):
+    try:
+        with driver.session() as session:
+            result = add_topic_prerequisite(
+                session,
+                request.prerequisite_topic_id,
+                request.target_topic_id,
+            )
+
+        return {
+            "message": "Topic prerequisite added successfully",
+            "prerequisite": result,
+        }
+
+    except ValidationError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e),
+        )
+
+
+@app.post("/course-prerequisites")
+def add_course_prerequisite_endpoint(
+    request: CoursePrerequisiteRequest,
+):
+    try:
+        with driver.session() as session:
+            result = add_course_prerequisite(
+                session,
+                request.prerequisite_course_code,
+                request.target_course_code,
+            )
+
+        return {
+            "message": "Course prerequisite added successfully",
+            "prerequisite": result,
+        }
+
+    except ValidationError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e),
+        )
+    
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
